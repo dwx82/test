@@ -1,9 +1,11 @@
-on: 
+#Deploy with helm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
+ on: 
    workflow_dispatch: 
      inputs: 
        version: 
          description: 'Version to release (ex. v0.1)' 
          required: true 
+  
  jobs: 
    deploy: 
      name: Deploy rubysocial to production cluster 
@@ -48,4 +50,4 @@ on:
   
        - name: Deploy to Kubernetes 
          run: 
-           helm upgrade rubysocial /git/rubysocial/deployment/kubernetes/helm/rubychat/ --install --wait --atomic  --set=version=${{ github.event.inputs.version }} --kubeconfig /.kube/config 
+           helm upgrade rubysocial ~/git/rubysocial/deployment/kubernetes/helm/rubychat/ --install --wait --atomic  --set=version=${{ github.event.inputs.version }} --kubeconfig ~/.kube/config 
